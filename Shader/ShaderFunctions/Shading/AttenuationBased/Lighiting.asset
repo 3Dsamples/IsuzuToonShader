@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b2425a2284af743826c689403a4924, type: 3}
+  m_Name: Lighiting
+  m_EditorClassIdentifier: 
+  m_functionInfo: "// Made with Amplify Shader Editor\n// Available at the Unity Asset
+    Store - http://u3d.as/y3X \n/*ASEBEGIN\nVersion=17400\n2011;186;1394;737;1781.271;421.7623;1.3;True;False\nNode;AmplifyShaderEditor.CustomExpressionNode;13;-1205.728,389.8303;Float;False;return
+    ShadeSH9(half4(Normal, 1.0))@;3;False;1;True;Normal;FLOAT3;0,0,0;In;;Float;False;False;True;False;0;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.SimpleMaxOpNode;14;-357.3201,8.55247;Inherit;True;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode;11;-909.1542,-138.8487;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.DynamicAppendNode;12;-1178.845,156.0503;Inherit;False;FLOAT3;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.StepOpNode;18;-980.2272,75.93237;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.WorldSpaceLightPos;16;-1289.046,52.21825;Inherit;False;0;3;FLOAT4;0;FLOAT3;1;FLOAT;2\nNode;AmplifyShaderEditor.RangedFloatNode;17;-1331.846,283.1364;Float;False;Property;_UnlitIntensity;Unlit
+    Intensity;0;0;Create;True;0;0;False;1;Header(Light Settings);1;1;0.001;4;0;1;FLOAT;0\nNode;AmplifyShaderEditor.SimpleMaxOpNode;10;-950.3292,353.8603;Inherit;False;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.LightAttenuation;20;-1278.172,-36.96232;Inherit;False;0;1;FLOAT;0\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode;3;-822.8002,287.4242;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.SaturateNode;4;-568.5431,-29.92068;Inherit;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode;1;-953.796,212.6913;Inherit;False;2;2;0;FLOAT3;0.05,0,0;False;1;FLOAT;0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.Vector3Node;2;-1354.329,472.8603;Float;False;Constant;_Vector0;Vector
+    0;28;0;Create;True;0;0;False;0;0,-1,0;0,0,0;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3\nNode;AmplifyShaderEditor.RangedFloatNode;5;-1345.877,173.2973;Float;False;Constant;_Float1;Float
+    1;35;0;Create;True;0;0;False;0;0.05;0;0;0;0;1;FLOAT;0\nNode;AmplifyShaderEditor.CustomExpressionNode;8;-1167.329,478.8603;Float;False;return
+    ShadeSH9(half4(Normal, 1.0))@;3;False;1;True;Normal;FLOAT3;0,0,0;In;;Float;False;False;True;False;0;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.SaturateNode;9;-553.297,200.6784;Inherit;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.LerpOp;6;-727.0669,-35.58157;Inherit;False;3;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT;0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.SimpleMaxOpNode;7;-678.5492,223.6733;Inherit;False;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.LightColorNode;15;-1228.938,-155.9588;Inherit;False;0;3;COLOR;0;FLOAT3;1;FLOAT;2\nNode;AmplifyShaderEditor.FunctionOutput;0;-230.1,11.7;Inherit;True;True;-1;Lighting
+    Result;0;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nWireConnection;14;0;4;0\nWireConnection;14;1;9;0\nWireConnection;11;0;15;1\nWireConnection;11;1;20;0\nWireConnection;12;0;5;0\nWireConnection;12;1;5;0\nWireConnection;12;2;5;0\nWireConnection;18;0;16;2\nWireConnection;10;0;13;0\nWireConnection;10;1;8;0\nWireConnection;3;0;17;0\nWireConnection;3;1;10;0\nWireConnection;4;0;6;0\nWireConnection;1;0;12;0\nWireConnection;1;1;17;0\nWireConnection;8;0;2;0\nWireConnection;9;0;7;0\nWireConnection;6;0;11;0\nWireConnection;6;1;15;1\nWireConnection;6;2;18;0\nWireConnection;7;0;1;0\nWireConnection;7;1;3;0\nWireConnection;0;0;14;0\nASEEND*/\n//CHKSM=980469F5EB81072D98B47B9D180B42EC221B7900"
+  m_functionName: 
+  m_description: 
+  m_additionalIncludes:
+    m_additionalIncludes: []
+    m_outsideIncludes: []
+  m_additionalPragmas:
+    m_additionalPragmas: []
+    m_outsidePragmas: []
+  m_additionalDirectives:
+    m_validData: 0
+    m_isDirty: 0
+    m_moduleName: ' Additional Directives'
+    m_independentModule: 1
+    m_additionalDirectives: []
+    m_shaderFunctionDirectives: []
+    m_nativeDirectives: []
+    m_nativeDirectivesIndex: -1
+    m_nativeDirectivesFoldout: 0
+    m_directivesSaveItems: []
+  m_nodeCategory: 0
+  m_customNodeCategory: IsuzuToonShader
+  m_previewPosition: 0
+  m_hidden: 0
