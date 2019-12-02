@@ -57,6 +57,8 @@ namespace Shiranui_Isuzu.IsuzuToonShader.Inspector
         private readonly string specularMask = "_SpecularMask";
         private readonly string specularColor = "_SpecularColor";
         private readonly string specularPower = "_SpecularPower";
+        private readonly string specularSmoothness = "_SpecularSmoothness";
+        private readonly string metallic = "_Metallic";
         private readonly string emmissiveMask = "_EmmissiveMask";
         private readonly string emmisiveColor = "_EmmisiveColor";
         private readonly string unlitIntensity = "_UnlitIntensity";
@@ -87,6 +89,7 @@ namespace Shiranui_Isuzu.IsuzuToonShader.Inspector
         private bool useSubsurfaceFold = false;
         private bool matcapFold = false;
         private bool specularMaskFold = false;
+        private bool metallicFold = false;
         private bool emmissiveMaskFold = false;
         private bool unlitIntensityFold = false;
         private bool outlineMaskFold = false;
@@ -179,6 +182,8 @@ namespace Shiranui_Isuzu.IsuzuToonShader.Inspector
             var specularMaskProp = FindProperty(this.specularMask, properties, false);
             var specularColorProp = FindProperty(this.specularColor, properties, false);
             var specularPowerProp = FindProperty(this.specularPower, properties, false);
+            var specularSmoothnessProp = FindProperty(this.specularSmoothness, properties, false);
+            var metallicProp = FindProperty(this.metallic, properties, false);
             var emmissiveMaskProp = FindProperty(this.emmissiveMask, properties, false);
             var emmisiveColorProp = FindProperty(this.emmisiveColor, properties, false);
             var unlitIntensityProp = FindProperty(this.unlitIntensity, properties, false);
@@ -283,11 +288,17 @@ namespace Shiranui_Isuzu.IsuzuToonShader.Inspector
                     materialEditor.TexturePropertySingleLine(new GUIContent("Matcap Mask"), matcapMaskProp);
                 });
 
+                CustomInspectorUIUtility.PropertyFoldGroup("Metallic Settings", ref this.metallicFold, () =>
+                {
+                    materialEditor.ShaderProperty(metallicProp, "Metallic");
+                });
+
                 CustomInspectorUIUtility.PropertyFoldGroup("Specular Settings", ref this.specularMaskFold, () =>
                 {
                     materialEditor.TexturePropertySingleLine(new GUIContent("Specular Mask"), specularMaskProp);
                     materialEditor.ShaderProperty(specularColorProp, "Specular Color");
                     materialEditor.ShaderProperty(specularPowerProp, "Specular Power");
+                    materialEditor.ShaderProperty(specularSmoothnessProp, "Specular Softness");
                 });
 
                 CustomInspectorUIUtility.PropertyFoldGroup("Emmisive Settings", ref this.emmissiveMaskFold, () =>
