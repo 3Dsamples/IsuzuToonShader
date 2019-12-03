@@ -4,7 +4,6 @@ Shader "IsuzuToonShader/Normal"
 {
 	Properties
 	{
-		_Cutoff( "Mask Clip Value", Float ) = 0.5
 		[Header(Metallic)]_Metallic("Metallic", Range( 0 , 1)) = 0
 		[NoScaleOffset][Header(Base Map)]_MainTexure("Main Texure", 2D) = "white" {}
 		_BaseColor("Base Color", Color) = (1,1,1,0)
@@ -44,7 +43,7 @@ Shader "IsuzuToonShader/Normal"
 		[Header(Light Settings)]_UnlitIntensity("Unlit Intensity", Range( 0.001 , 4)) = 1
 		[NoScaleOffset][Header(Outline Settings)]_OutlineMask("Outline Mask", 2D) = "white" {}
 		_OutlineColor("Outline Color", Color) = (0,0,0,0)
-		_OutlineWidth("Outline Width", Range( 0 , 1)) = 0
+		_OutlineWidth("Outline Width", Float) = 0
 		[IntRange][Header(Stencil Buffer)]_Reference("Reference", Range( 0 , 255)) = 0
 		[IntRange]_ReadMask("Read Mask", Range( 0 , 255)) = 255
 		[IntRange]_WriteMask("Write Mask", Range( 0 , 255)) = 255
@@ -69,7 +68,7 @@ Shader "IsuzuToonShader/Normal"
 
 	SubShader
 	{
-		Tags{ "RenderType" = "TransparentCutout"  "Queue" = "AlphaTest+0"}
+		Tags{ }
 		Cull Front
 		CGPROGRAM
 		#pragma target 3.0
@@ -88,11 +87,7 @@ Shader "IsuzuToonShader/Normal"
 		{
 			float2 uv_OutlineMask651 = i.uv_texcoord;
 			float4 tex2DNode651 = tex2D( _OutlineMask, uv_OutlineMask651 );
-			float ifLocalVar661 = 0;
-			if( _OutlineWidth <= 0.0 )
-				ifLocalVar661 = 0.001;
 			o.Emission = ( _OutlineColor * tex2DNode651 ).rgb;
-			clip( ifLocalVar661 - _Cutoff );
 		}
 		ENDCG
 		
@@ -154,24 +149,24 @@ Shader "IsuzuToonShader/Normal"
 			UnityGIInput GIData;
 		};
 
-		uniform int _FailFront;
-		uniform float _BlendOpAlpha;
-		uniform int _CullMode;
-		uniform float _ReadMask;
-		uniform float _BlendRGBDst;
-		uniform float _Reference;
-		uniform int _PassFront;
-		uniform float _WriteMask;
-		uniform float _BlendOpRGB;
-		uniform float _BlendAlphaSrc;
 		uniform int _CompFront;
 		uniform int _CompBack;
-		uniform int _PassBack;
-		uniform float _BlendRGBSrc;
-		uniform int _FailBack;
-		uniform int _ZFailFront;
+		uniform float _BlendAlphaSrc;
+		uniform int _PassFront;
+		uniform float _BlendOpRGB;
 		uniform int _ZFailBack;
 		uniform float _BlendAlphaDst;
+		uniform float _BlendRGBSrc;
+		uniform int _PassBack;
+		uniform int _ZFailFront;
+		uniform int _FailBack;
+		uniform float _ReadMask;
+		uniform float _BlendRGBDst;
+		uniform int _CullMode;
+		uniform int _FailFront;
+		uniform float _WriteMask;
+		uniform float _BlendOpAlpha;
+		uniform float _Reference;
 		uniform sampler2D _EmmissiveMask;
 		uniform float4 _EmmisiveColor;
 		uniform float4 _SpecularColor;
@@ -213,7 +208,6 @@ Shader "IsuzuToonShader/Normal"
 		uniform sampler2D _OutlineMask;
 		uniform float _OutlineWidth;
 		uniform float4 _OutlineColor;
-		uniform float _Cutoff = 0.5;
 
 
 		float3 False13_g466( float3 Normal )
@@ -430,58 +424,52 @@ Shader "IsuzuToonShader/Normal"
 }
 /*ASEBEGIN
 Version=17400
-2024;427;1906;889;162.6576;-219.6084;3.148937;True;True
+7;29;1906;1014;-1710.561;-583.1377;1;True;True
 Node;AmplifyShaderEditor.ColorNode;649;1657.37,797.6154;Float;False;Property;_OutlineColor;Outline Color;51;0;Create;True;0;0;False;0;0,0,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.WireNode;650;1850.987,799.7914;Inherit;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.RangedFloatNode;660;2391.518,1210.86;Inherit;False;Constant;_Float1;Float 1;26;0;Create;True;0;0;False;0;0.001;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.CommentaryNode;579;1876.411,1574.261;Inherit;False;1221.773;942.1113;Comment;8;597;595;593;589;588;585;581;580;Master Node Output Options;1,1,1,1;0;0
+Node;AmplifyShaderEditor.SamplerNode;651;1702.507,999.9757;Inherit;True;Property;_OutlineMask;Outline Mask;50;1;[NoScaleOffset];Create;True;0;0;False;1;Header(Outline Settings);-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.RangedFloatNode;653;1998.795,1115.455;Float;False;Property;_OutlineWidth;Outline Width;52;0;Create;True;0;0;False;0;0;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.NormalVertexDataNode;655;2089.068,1302.417;Inherit;False;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.WireNode;652;2143.487,799.7914;Inherit;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.RangedFloatNode;654;2106.342,1225.125;Float;False;Constant;_Float2;Float 2;5;0;Create;True;0;0;False;0;0.01;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;653;1998.795,1115.455;Float;False;Property;_OutlineWidth;Outline Width;52;0;Create;True;0;0;False;0;0;0;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.CommentaryNode;579;1876.411,1574.261;Inherit;False;1221.773;942.1113;Comment;8;597;595;593;589;588;585;581;580;Master Node Output Options;1,1,1,1;0;0
-Node;AmplifyShaderEditor.SamplerNode;651;1702.507,999.9757;Inherit;True;Property;_OutlineMask;Outline Mask;50;1;[NoScaleOffset];Create;True;0;0;False;1;Header(Outline Settings);-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;656;2527.188,869.8584;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;657;2304.376,1026.272;Inherit;False;4;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.CommentaryNode;580;2184.898,1792.085;Inherit;False;408.8691;641.6335;Comment;11;599;598;596;594;592;591;590;587;586;584;583;Stencil Buffer;0.0147059,1,0.9184586,1;0;0
 Node;AmplifyShaderEditor.CommentaryNode;581;1924.315,1716.167;Inherit;False;232;165;Comment;1;582;Cull Mode;0.1172414,1,0,1;0;0
-Node;AmplifyShaderEditor.ConditionalIfNode;661;2519.011,1025.153;Inherit;False;False;5;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;657;2304.376,1026.272;Inherit;False;4;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;656;2527.188,869.8584;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.IntNode;591;2204.134,2072.296;Float;False;Property;_CompFront;Comp. Front;56;1;[Enum];Create;True;0;1;UnityEngine.Rendering.CompareFunction;True;0;8;8;0;1;INT;0
-Node;AmplifyShaderEditor.IntNode;586;2412.134,2072.296;Float;False;Property;_CompBack;Comp. Back;60;1;[Enum];Create;True;0;1;UnityEngine.Rendering.CompareFunction;True;0;8;8;0;1;INT;0
-Node;AmplifyShaderEditor.RangedFloatNode;588;2853.283,1849.583;Float;False;Property;_BlendAlphaSrc;Blend Alpha Src;67;1;[Enum];Create;True;0;1;UnityEngine.Rendering.BlendMode;True;0;5;5;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.IntNode;596;2204.134,2152.297;Float;False;Property;_PassFront;Pass Front;57;1;[Enum];Create;True;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
-Node;AmplifyShaderEditor.RangedFloatNode;597;2649.901,2032.388;Float;False;Property;_BlendOpRGB;Blend Op RGB;66;1;[Enum];Create;True;0;1;UnityEngine.Rendering.BlendOp;True;0;0;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.IntNode;594;2412.134,2312.297;Float;False;Property;_ZFailBack;ZFail Back;63;1;[Enum];Create;True;1;Option1;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
-Node;AmplifyShaderEditor.FunctionNode;700;2571.606,582.4785;Inherit;False;ShadeCore;0;;457;1d86b0e5f2bb83646b4b93539489b28b;0;0;5;COLOR;331;FLOAT;325;FLOAT;323;FLOAT4;0;COLOR;246
-Node;AmplifyShaderEditor.RangedFloatNode;589;2857.429,1937.37;Float;False;Property;_BlendAlphaDst;Blend Alpha Dst;68;1;[Enum];Create;True;0;1;UnityEngine.Rendering.BlendMode;True;0;10;10;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;585;2651.192,1848.759;Float;False;Property;_BlendRGBSrc;Blend RGB Src;64;1;[Enum];Create;True;0;1;UnityEngine.Rendering.BlendMode;True;1;Header(Blend);5;5;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.IntNode;590;2412.134,2152.297;Float;False;Property;_PassBack;Pass Back;61;1;[Enum];Create;True;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
-Node;AmplifyShaderEditor.IntNode;587;2204.134,2312.297;Float;False;Property;_ZFailFront;ZFail Front;59;1;[Enum];Create;True;1;Option1;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
-Node;AmplifyShaderEditor.IntNode;584;2412.134,2232.298;Float;False;Property;_FailBack;Fail Back;62;1;[Enum];Create;True;1;Option1;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
-Node;AmplifyShaderEditor.RangedFloatNode;599;2204.134,1912.296;Float;False;Property;_ReadMask;Read Mask;54;1;[IntRange];Create;True;0;0;True;0;255;255;0;255;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;593;2648.338,1931.546;Float;False;Property;_BlendRGBDst;Blend RGB Dst;65;1;[Enum];Create;True;0;1;UnityEngine.Rendering.BlendMode;True;0;10;10;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.IntNode;582;1968.75,1766.067;Float;False;Property;_CullMode;Cull Mode;70;1;[Enum];Create;True;0;1;UnityEngine.Rendering.CullMode;True;1;Header(Rendering);0;0;0;1;INT;0
+Node;AmplifyShaderEditor.IntNode;584;2412.134,2232.298;Float;False;Property;_FailBack;Fail Back;62;1;[Enum];Create;True;1;Option1;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
+Node;AmplifyShaderEditor.RangedFloatNode;599;2204.134,1912.296;Float;False;Property;_ReadMask;Read Mask;54;1;[IntRange];Create;True;0;0;True;0;255;255;0;255;0;1;FLOAT;0
 Node;AmplifyShaderEditor.IntNode;583;2204.134,2232.298;Float;False;Property;_FailFront;Fail Front;58;1;[Enum];Create;True;1;Option1;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
+Node;AmplifyShaderEditor.RangedFloatNode;592;2204.134,1832.296;Float;False;Property;_Reference;Reference;53;1;[IntRange];Create;True;0;0;True;1;Header(Stencil Buffer);0;0;0;255;0;1;FLOAT;0
+Node;AmplifyShaderEditor.OutlineNode;658;2693.62,900.0198;Inherit;False;2;True;None;0;0;Front;3;0;FLOAT3;0,0,0;False;2;FLOAT;0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.RangedFloatNode;598;2204.134,1992.296;Float;False;Property;_WriteMask;Write Mask;55;1;[IntRange];Create;True;0;0;True;0;255;255;0;255;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;595;2861.992,2034.213;Float;False;Property;_BlendOpAlpha;Blend Op Alpha;69;1;[Enum];Create;True;0;1;UnityEngine.Rendering.BlendOp;True;0;0;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;592;2204.134,1832.296;Float;False;Property;_Reference;Reference;53;1;[IntRange];Create;True;0;0;True;1;Header(Stencil Buffer);0;0;0;255;0;1;FLOAT;0
-Node;AmplifyShaderEditor.OutlineNode;658;2693.62,900.0198;Inherit;False;2;True;Masked;0;0;Front;3;0;FLOAT3;0,0,0;False;2;FLOAT;0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.IntNode;587;2204.134,2312.297;Float;False;Property;_ZFailFront;ZFail Front;59;1;[Enum];Create;True;1;Option1;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
+Node;AmplifyShaderEditor.IntNode;596;2204.134,2152.297;Float;False;Property;_PassFront;Pass Front;57;1;[Enum];Create;True;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
+Node;AmplifyShaderEditor.RangedFloatNode;597;2649.901,2032.388;Float;False;Property;_BlendOpRGB;Blend Op RGB;66;1;[Enum];Create;True;0;1;UnityEngine.Rendering.BlendOp;True;0;0;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;588;2853.283,1849.583;Float;False;Property;_BlendAlphaSrc;Blend Alpha Src;67;1;[Enum];Create;True;0;1;UnityEngine.Rendering.BlendMode;True;0;5;5;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.IntNode;591;2204.134,2072.296;Float;False;Property;_CompFront;Comp. Front;56;1;[Enum];Create;True;0;1;UnityEngine.Rendering.CompareFunction;True;0;8;8;0;1;INT;0
+Node;AmplifyShaderEditor.IntNode;586;2412.134,2072.296;Float;False;Property;_CompBack;Comp. Back;60;1;[Enum];Create;True;0;1;UnityEngine.Rendering.CompareFunction;True;0;8;8;0;1;INT;0
+Node;AmplifyShaderEditor.RangedFloatNode;585;2651.192,1848.759;Float;False;Property;_BlendRGBSrc;Blend RGB Src;64;1;[Enum];Create;True;0;1;UnityEngine.Rendering.BlendMode;True;1;Header(Blend);5;5;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.IntNode;590;2412.134,2152.297;Float;False;Property;_PassBack;Pass Back;61;1;[Enum];Create;True;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
+Node;AmplifyShaderEditor.RangedFloatNode;589;2857.429,1937.37;Float;False;Property;_BlendAlphaDst;Blend Alpha Dst;68;1;[Enum];Create;True;0;1;UnityEngine.Rendering.BlendMode;True;0;10;10;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.IntNode;594;2412.134,2312.297;Float;False;Property;_ZFailBack;ZFail Back;63;1;[Enum];Create;True;1;Option1;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
+Node;AmplifyShaderEditor.FunctionNode;700;2571.606,582.4785;Inherit;False;ShadeCore;0;;457;1d86b0e5f2bb83646b4b93539489b28b;0;0;5;COLOR;331;FLOAT;325;FLOAT;323;FLOAT4;0;COLOR;246
 Node;AmplifyShaderEditor.StandardSurfaceOutputNode;0;2914.769,523.5805;Float;False;True;-1;2;Shiranui_Isuzu.IsuzuToonShader.Inspector.IsuzuToonShaderInspector;0;0;CustomLighting;IsuzuToonShader/Normal;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;Off;0;False;-1;0;False;-1;False;0;False;-1;0;False;-1;False;0;Opaque;0.5;True;True;0;False;Opaque;;Geometry;ForwardOnly;14;all;True;True;True;True;0;False;-1;True;0;True;592;255;True;599;255;True;598;0;True;591;0;True;596;0;True;583;0;True;587;0;True;586;0;True;590;0;True;584;0;True;594;False;2;15;10;25;False;0.5;True;0;5;False;585;10;False;593;2;5;False;588;10;False;589;0;False;-1;0;False;595;0;False;0;0,0,0,0;VertexScale;True;False;Cylindrical;False;Relative;0;;-1;-1;-1;-1;0;False;0;0;True;582;-1;0;False;-1;0;0;0;False;0.1;False;-1;0;False;-1;15;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT3;0,0,0;False;4;FLOAT;0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
 WireConnection;650;0;649;0
 WireConnection;652;0;650;0
-WireConnection;661;0;653;0
-WireConnection;661;3;660;0
-WireConnection;661;4;660;0
+WireConnection;656;0;652;0
+WireConnection;656;1;651;0
 WireConnection;657;0;651;1
 WireConnection;657;1;653;0
 WireConnection;657;2;654;0
 WireConnection;657;3;655;0
-WireConnection;656;0;652;0
-WireConnection;656;1;651;0
 WireConnection;658;0;656;0
-WireConnection;658;2;661;0
 WireConnection;658;1;657;0
 WireConnection;0;2;700;331
 WireConnection;0;13;700;0
 WireConnection;0;11;658;0
 ASEEND*/
-//CHKSM=6746568C563BAE153B7EEE99E0BB680D01DF5E69
+//CHKSM=9922253B01A8608845EB056F593F93BE9DEFBAEE

@@ -48,7 +48,7 @@ Shader "IsuzuToonShader/TransCutout"
 		_MaskClipValue("Mask Clip Value", Range( 0 , 1)) = 0
 		[NoScaleOffset][Header(Outline Settings)]_OutlineMask("Outline Mask", 2D) = "white" {}
 		_OutlineColor("Outline Color", Color) = (0,0,0,0)
-		_OutlineWidth("Outline Width", Range( 0 , 1)) = 0
+		_OutlineWidth("Outline Width", Float) = 0
 		[IntRange][Header(Stencil Buffer)]_Reference("Reference", Range( 0 , 255)) = 0
 		[IntRange]_ReadMask("Read Mask", Range( 0 , 255)) = 255
 		[IntRange]_WriteMask("Write Mask", Range( 0 , 255)) = 255
@@ -165,19 +165,19 @@ Shader "IsuzuToonShader/TransCutout"
 			UnityGIInput GIData;
 		};
 
-		uniform float _WriteMask;
-		uniform int _CullMode;
-		uniform int _CompFront;
-		uniform int _PassBack;
-		uniform int _FailBack;
-		uniform float _MaskClipValue;
-		uniform int _PassFront;
-		uniform float _Reference;
 		uniform float _ReadMask;
+		uniform float _Reference;
+		uniform int _PassFront;
 		uniform int _FailFront;
-		uniform int _ZFailFront;
-		uniform int _ZFailBack;
 		uniform int _CompBack;
+		uniform int _ZFailBack;
+		uniform int _ZFailFront;
+		uniform int _CompFront;
+		uniform int _CullMode;
+		uniform float _WriteMask;
+		uniform int _PassBack;
+		uniform float _MaskClipValue;
+		uniform int _FailBack;
 		uniform sampler2D _EmmissiveMask;
 		uniform float4 _EmmisiveColor;
 		uniform sampler2D _TransparentMask;
@@ -453,41 +453,39 @@ Shader "IsuzuToonShader/TransCutout"
 }
 /*ASEBEGIN
 Version=17400
-2024;427;1906;889;-1500.851;-326.0953;1;True;True
+1885;294;1906;1014;-1500.851;-263.5953;1;True;True
 Node;AmplifyShaderEditor.ColorNode;579;1785.109,549.1916;Float;False;Property;_OutlineColor;Outline Color;53;0;Create;True;0;0;False;0;0,0,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.WireNode;580;1978.726,551.3676;Inherit;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.RangedFloatNode;572;2126.534,867.0309;Float;False;Property;_OutlineWidth;Outline Width;54;0;Create;True;0;0;False;0;0;0;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.WireNode;576;2271.226,551.3676;Inherit;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.NormalVertexDataNode;575;2216.807,1053.993;Inherit;False;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;577;2234.081,976.7006;Float;False;Constant;_Float1;Float 0;5;0;Create;True;0;0;False;0;0.01;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.FunctionNode;565;2381.083,360.8887;Inherit;False;ShadeCore;1;;1;1d86b0e5f2bb83646b4b93539489b28b;0;0;5;COLOR;331;FLOAT;325;FLOAT;323;FLOAT4;0;COLOR;246
-Node;AmplifyShaderEditor.CommentaryNode;530;2008.214,1527.081;Inherit;False;1190.854;946.5505;Comment;3;532;531;491;Master Node Output Options;1,1,1,1;0;0
 Node;AmplifyShaderEditor.SamplerNode;574;1830.246,751.5519;Inherit;True;Property;_OutlineMask;Outline Mask;52;1;[NoScaleOffset];Create;True;0;0;False;1;Header(Outline Settings);-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.CommentaryNode;530;2008.214,1527.081;Inherit;False;1190.854;946.5505;Comment;3;532;531;491;Master Node Output Options;1,1,1,1;0;0
+Node;AmplifyShaderEditor.RangedFloatNode;572;2126.534,867.0309;Float;False;Property;_OutlineWidth;Outline Width;54;0;Create;True;0;0;False;0;0;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;587;2458.851,1046.595;Inherit;False;Constant;_Eps;Eps;26;0;Create;True;0;0;False;0;0.001;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.NormalVertexDataNode;575;2216.807,1053.993;Inherit;False;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.WireNode;576;2271.226,551.3676;Inherit;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.FunctionNode;565;2381.083,360.8887;Inherit;False;ShadeCore;1;;1;1d86b0e5f2bb83646b4b93539489b28b;0;0;5;COLOR;331;FLOAT;325;FLOAT;323;FLOAT4;0;COLOR;246
+Node;AmplifyShaderEditor.RangedFloatNode;577;2234.081,976.7006;Float;False;Constant;_Float1;Float 0;5;0;Create;True;0;0;False;0;0.01;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;581;2432.115,777.8481;Inherit;False;4;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT3;0,0,0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.ConditionalIfNode;583;2646.75,776.7293;Inherit;False;False;5;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.CommentaryNode;532;2034.692,1650.239;Inherit;False;232;165;Comment;1;533;Cull Mode;0.1172414,1,0,1;0;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;578;2654.928,621.4346;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.CommentaryNode;531;2295.275,1726.156;Inherit;False;408.8691;641.6335;Comment;11;550;549;547;545;543;542;541;538;537;535;534;Stencil Buffer;0.0147059,1,0.9184586,1;0;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;581;2432.115,777.8481;Inherit;False;4;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.ConditionalIfNode;583;2646.75,776.7293;Inherit;False;False;5;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;550;2314.511,1846.368;Float;False;Property;_ReadMask;Read Mask;56;1;[IntRange];Create;True;0;0;True;0;255;255;0;255;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;543;2314.511,1766.368;Float;False;Property;_Reference;Reference;55;1;[IntRange];Create;True;0;0;True;1;Header(Stencil Buffer);0;0;0;255;0;1;FLOAT;0
-Node;AmplifyShaderEditor.IntNode;547;2314.511,2086.369;Float;False;Property;_PassFront;Pass Front;59;1;[Enum];Create;True;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
-Node;AmplifyShaderEditor.IntNode;534;2314.511,2166.369;Float;False;Property;_FailFront;Fail Front;60;1;[Enum];Create;True;1;Option1;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
-Node;AmplifyShaderEditor.IntNode;537;2522.511,2006.368;Float;False;Property;_CompBack;Comp. Back;62;1;[Enum];Create;True;0;1;UnityEngine.Rendering.CompareFunction;True;0;8;8;0;1;INT;0
-Node;AmplifyShaderEditor.IntNode;545;2522.511,2246.369;Float;False;Property;_ZFailBack;ZFail Back;65;1;[Enum];Create;True;1;Option1;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
-Node;AmplifyShaderEditor.IntNode;538;2314.511,2246.369;Float;False;Property;_ZFailFront;ZFail Front;61;1;[Enum];Create;True;1;Option1;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
-Node;AmplifyShaderEditor.IntNode;542;2314.511,2006.368;Float;False;Property;_CompFront;Comp. Front;58;1;[Enum];Create;True;0;1;UnityEngine.Rendering.CompareFunction;True;0;8;8;0;1;INT;0
-Node;AmplifyShaderEditor.IntNode;533;2079.127,1700.139;Float;False;Property;_CullMode;Cull Mode;66;1;[Enum];Create;True;0;1;UnityEngine.Rendering.CullMode;True;1;Header(Rendering);0;0;0;1;INT;0
-Node;AmplifyShaderEditor.RangedFloatNode;549;2314.511,1926.368;Float;False;Property;_WriteMask;Write Mask;57;1;[IntRange];Create;True;0;0;True;0;255;255;0;255;0;1;FLOAT;0
 Node;AmplifyShaderEditor.IntNode;541;2522.511,2086.369;Float;False;Property;_PassBack;Pass Back;63;1;[Enum];Create;True;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
-Node;AmplifyShaderEditor.RangedFloatNode;491;2031.586,1868.659;Float;False;Property;_MaskClipValue;Mask Clip Value;51;0;Create;True;0;0;True;0;0;0;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.IntNode;535;2522.511,2166.369;Float;False;Property;_FailBack;Fail Back;64;1;[Enum];Create;True;1;Option1;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
+Node;AmplifyShaderEditor.RangedFloatNode;549;2314.511,1926.368;Float;False;Property;_WriteMask;Write Mask;57;1;[IntRange];Create;True;0;0;True;0;255;255;0;255;0;1;FLOAT;0
+Node;AmplifyShaderEditor.IntNode;533;2079.127,1700.139;Float;False;Property;_CullMode;Cull Mode;66;1;[Enum];Create;True;0;1;UnityEngine.Rendering.CullMode;True;1;Header(Rendering);0;0;0;1;INT;0
 Node;AmplifyShaderEditor.OutlineNode;582;2821.36,651.5959;Inherit;False;2;True;Masked;0;0;Front;3;0;FLOAT3;0,0,0;False;2;FLOAT;0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.IntNode;535;2522.511,2166.369;Float;False;Property;_FailBack;Fail Back;64;1;[Enum];Create;True;1;Option1;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
+Node;AmplifyShaderEditor.RangedFloatNode;491;2031.586,1868.659;Float;False;Property;_MaskClipValue;Mask Clip Value;51;0;Create;True;0;0;True;0;0;0;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.IntNode;542;2314.511,2006.368;Float;False;Property;_CompFront;Comp. Front;58;1;[Enum];Create;True;0;1;UnityEngine.Rendering.CompareFunction;True;0;8;8;0;1;INT;0
+Node;AmplifyShaderEditor.IntNode;547;2314.511,2086.369;Float;False;Property;_PassFront;Pass Front;59;1;[Enum];Create;True;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
+Node;AmplifyShaderEditor.RangedFloatNode;543;2314.511,1766.368;Float;False;Property;_Reference;Reference;55;1;[IntRange];Create;True;0;0;True;1;Header(Stencil Buffer);0;0;0;255;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;550;2314.511,1846.368;Float;False;Property;_ReadMask;Read Mask;56;1;[IntRange];Create;True;0;0;True;0;255;255;0;255;0;1;FLOAT;0
+Node;AmplifyShaderEditor.IntNode;534;2314.511,2166.369;Float;False;Property;_FailFront;Fail Front;60;1;[Enum];Create;True;1;Option1;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
+Node;AmplifyShaderEditor.IntNode;538;2314.511,2246.369;Float;False;Property;_ZFailFront;ZFail Front;61;1;[Enum];Create;True;1;Option1;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
+Node;AmplifyShaderEditor.IntNode;545;2522.511,2246.369;Float;False;Property;_ZFailBack;ZFail Back;65;1;[Enum];Create;True;1;Option1;0;1;UnityEngine.Rendering.StencilOp;True;0;0;0;0;1;INT;0
+Node;AmplifyShaderEditor.IntNode;537;2522.511,2006.368;Float;False;Property;_CompBack;Comp. Back;62;1;[Enum];Create;True;0;1;UnityEngine.Rendering.CompareFunction;True;0;8;8;0;1;INT;0
 Node;AmplifyShaderEditor.StandardSurfaceOutputNode;0;3104.161,202.1557;Float;False;True;-1;2;Shiranui_Isuzu.IsuzuToonShader.Inspector.IsuzuToonShaderInspector;0;0;CustomLighting;IsuzuToonShader/TransCutout;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;Off;0;False;-1;0;False;-1;False;0;False;-1;0;False;-1;False;0;Custom;0.5;True;True;0;True;TransparentCutout;;Transparent;ForwardOnly;14;all;True;True;True;True;0;False;-1;True;0;True;543;255;True;550;255;True;549;0;True;542;0;True;547;0;True;534;0;True;538;0;True;537;0;True;541;0;True;535;0;True;545;False;2;15;10;25;False;0.5;True;2;5;False;536;10;False;544;2;5;False;539;10;False;540;0;False;548;0;False;546;0;False;0;0,0,0,0;VertexOffset;True;False;Cylindrical;False;Relative;0;;0;-1;-1;-1;0;False;0;0;True;533;-1;0;False;491;0;0;0;False;0.1;False;-1;0;False;-1;15;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT3;0,0,0;False;4;FLOAT;0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
 WireConnection;580;0;579;0
 WireConnection;576;0;580;0
-WireConnection;578;0;576;0
-WireConnection;578;1;574;0
 WireConnection;581;0;574;1
 WireConnection;581;1;572;0
 WireConnection;581;2;577;0
@@ -496,6 +494,8 @@ WireConnection;583;0;572;0
 WireConnection;583;2;565;323
 WireConnection;583;3;587;0
 WireConnection;583;4;587;0
+WireConnection;578;0;576;0
+WireConnection;578;1;574;0
 WireConnection;582;0;578;0
 WireConnection;582;2;583;0
 WireConnection;582;1;581;0
@@ -505,4 +505,4 @@ WireConnection;0;10;565;323
 WireConnection;0;13;565;0
 WireConnection;0;11;582;0
 ASEEND*/
-//CHKSM=055602EAF6BA526E541FD9AE5277B2F07B37CA4D
+//CHKSM=E4E11DB134FB704D341D1A91503A166BC141C480
