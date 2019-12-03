@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Name: Metallic
   m_EditorClassIdentifier: 
   m_functionInfo: "// Made with Amplify Shader Editor\n// Available at the Unity Asset
-    Store - http://u3d.as/y3X \n/*ASEBEGIN\nVersion=17400\n2207;139;1906;1014;1329;568;1;True;False\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode;16;-592,45;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;10;False;1;FLOAT;0\nNode;AmplifyShaderEditor.RangedFloatNode;15;-893,39;Inherit;False;Property;_MetallicGloss;Metallic
-    Gloss;1;0;Create;True;0;0;False;0;1;0;0;1;0;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionInput;9;-711,-146;Inherit;False;Normal
-    Map;3;0;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.IndirectSpecularLight;8;-398,-83;Inherit;True;Tangent;3;0;FLOAT3;0,0,1;False;1;FLOAT;0.86;False;2;FLOAT;8;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.RangedFloatNode;12;-810,-58;Inherit;False;Property;_Metallic;Metallic;0;0;Create;True;0;0;False;1;Header(Metallic);0;0;0;1;0;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionOutput;0;-87,-85;Inherit;False;True;-1;Output;0;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nWireConnection;16;0;15;0\nWireConnection;8;0;9;0\nWireConnection;8;1;12;0\nWireConnection;8;2;16;0\nWireConnection;0;0;8;0\nASEEND*/\n//CHKSM=65557562483D942FADB725B039B52BC5E9291048"
+    Store - http://u3d.as/y3X \n/*ASEBEGIN\nVersion=17400\n249;526;1906;889;1334;436.5;1;True;True\nNode;AmplifyShaderEditor.IndirectSpecularLight;8;-613,-85;Inherit;False;World;3;0;FLOAT3;0,0,1;False;1;FLOAT;0.86;False;2;FLOAT;1;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode;26;-296,-205.5;Inherit;False;3;3;0;FLOAT4;0,0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;1;FLOAT4;0\nNode;AmplifyShaderEditor.FunctionInput;17;-543,-289.5;Inherit;False;Base
+    Color;4;0;False;1;0;FLOAT4;0,0,0,0;False;1;FLOAT4;0\nNode;AmplifyShaderEditor.FunctionInput;20;-645,-193.5;Inherit;False;Environment
+    Lighit Color;3;1;False;1;0;FLOAT3;1,1,1;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.RangedFloatNode;12;-961,-4;Inherit;False;Property;_Metallic;Metallic;0;0;Create;True;0;0;False;1;Header(Metallic);0;0;0;1;0;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionOutput;0;-139,-205;Inherit;False;True;-1;Metallic
+    Color;0;False;1;0;FLOAT4;0,0,0,0;False;1;FLOAT4;0\nNode;AmplifyShaderEditor.FunctionOutput;27;-125,3.5;Inherit;False;False;-1;Metallic
+    Param;1;False;1;0;FLOAT;0;False;1;FLOAT;0\nWireConnection;8;1;12;0\nWireConnection;26;0;17;0\nWireConnection;26;1;20;0\nWireConnection;26;2;8;0\nWireConnection;0;0;26;0\nWireConnection;27;0;12;0\nASEEND*/\n//CHKSM=B29252A26A4670A03E5CF8EB5DD8B9157FD00E08"
   m_functionName: 
   m_description: 
   m_additionalIncludes:
@@ -34,7 +36,7 @@ MonoBehaviour:
     m_nativeDirectivesIndex: -1
     m_nativeDirectivesFoldout: 0
     m_directivesSaveItems: []
-  m_nodeCategory: 3
-  m_customNodeCategory: 
+  m_nodeCategory: 0
+  m_customNodeCategory: IsuzuToonShader
   m_previewPosition: 0
   m_hidden: 0
