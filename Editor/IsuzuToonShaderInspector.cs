@@ -42,6 +42,7 @@ namespace Shiranui_Isuzu.IsuzuToonShader.Inspector
         private readonly string rimLightMask = "_RimLightMask";
         private readonly string rimPower = "_RimPower";
         private readonly string rimOffset = "_RimOffset";
+        private readonly string rimBias = "_RimBias";
         private readonly string useSubsurface = "_UseSubsurface";
         private readonly string sSSMap = "_SSSMap";
         private readonly string sSSMultiplier = "_SSSMultiplier";
@@ -56,13 +57,14 @@ namespace Shiranui_Isuzu.IsuzuToonShader.Inspector
         private readonly string matcapMask = "_MatcapMask";
         private readonly string specularMask = "_SpecularMask";
         private readonly string specularColor = "_SpecularColor";
-        private readonly string specularPower = "_SpecularPower";
+        private readonly string specularPower = "_SpecularStep";
         private readonly string specularSmoothness = "_SpecularSmoothness";
         private readonly string metallic = "_Metallic";
+        private readonly string smoothness = "_Smoothness";
         private readonly string emmissiveMask = "_EmmissiveMask";
         private readonly string emmisiveColor = "_EmmisiveColor";
         private readonly string unlitIntensity = "_UnlitIntensity";
-        private readonly string maskClipValue = "_Cutoff";
+        private readonly string maskClipValue = "_MaskClipValue";
         private readonly string outlineMask = "_OutlineMask";
         private readonly string outlineColor = "_OutlineColor";
         private readonly string outlineWidth1 = "_OutlineWidth";
@@ -167,6 +169,7 @@ namespace Shiranui_Isuzu.IsuzuToonShader.Inspector
             var rimLightMaskProp = FindProperty(this.rimLightMask, properties, false);
             var rimPowerProp = FindProperty(this.rimPower, properties, false);
             var rimOffsetProp = FindProperty(this.rimOffset, properties, false);
+            var rimBiasProp = FindProperty(this.rimBias, properties, false);
             var useSubsurfaceProp = FindProperty(this.useSubsurface, properties, false);
             var sSSMapProp = FindProperty(this.sSSMap, properties, false);
             var sSSMultiplierProp = FindProperty(this.sSSMultiplier, properties, false);
@@ -184,6 +187,7 @@ namespace Shiranui_Isuzu.IsuzuToonShader.Inspector
             var specularPowerProp = FindProperty(this.specularPower, properties, false);
             var specularSmoothnessProp = FindProperty(this.specularSmoothness, properties, false);
             var metallicProp = FindProperty(this.metallic, properties, false);
+            var smoothnessProp = FindProperty(this.smoothness, properties, false);
             var emmissiveMaskProp = FindProperty(this.emmissiveMask, properties, false);
             var emmisiveColorProp = FindProperty(this.emmisiveColor, properties, false);
             var unlitIntensityProp = FindProperty(this.unlitIntensity, properties, false);
@@ -262,10 +266,11 @@ namespace Shiranui_Isuzu.IsuzuToonShader.Inspector
 
                 CustomInspectorUIUtility.PropertyToggleFoldGroup("Rim Settings", ref this.rimColorFold, ref this.useRimToggle, () =>
                 {
-                    materialEditor.ShaderProperty(rimColorProp, "Rim Color");
                     materialEditor.ShaderProperty(rimLightMaskProp, "RimLight Mask");
+                    materialEditor.ShaderProperty(rimColorProp, "Rim Color");
                     materialEditor.ShaderProperty(rimPowerProp, "Rim Power");
                     materialEditor.ShaderProperty(rimOffsetProp, "Rim Offset");
+                    materialEditor.ShaderProperty(rimBiasProp, "Rim Bias");
                 });
 
                 CustomInspectorUIUtility.PropertyToggleFoldGroup("Subsurface Settings", ref this.useSubsurfaceFold,
@@ -291,13 +296,14 @@ namespace Shiranui_Isuzu.IsuzuToonShader.Inspector
                 CustomInspectorUIUtility.PropertyFoldGroup("Metallic Settings", ref this.metallicFold, () =>
                 {
                     materialEditor.ShaderProperty(metallicProp, "Metallic");
+                    materialEditor.ShaderProperty(smoothnessProp, "Smoothness");
                 });
 
                 CustomInspectorUIUtility.PropertyFoldGroup("Specular Settings", ref this.specularMaskFold, () =>
                 {
                     materialEditor.TexturePropertySingleLine(new GUIContent("Specular Mask"), specularMaskProp);
                     materialEditor.ShaderProperty(specularColorProp, "Specular Color");
-                    materialEditor.ShaderProperty(specularPowerProp, "Specular Power");
+                    materialEditor.ShaderProperty(specularPowerProp, "Specular Step");
                     materialEditor.ShaderProperty(specularSmoothnessProp, "Specular Softness");
                 });
 
@@ -310,12 +316,12 @@ namespace Shiranui_Isuzu.IsuzuToonShader.Inspector
                 CustomInspectorUIUtility.PropertyFoldGroup("Light Settings", ref this.unlitIntensityFold,
                     () => { materialEditor.ShaderProperty(unlitIntensityProp, "Unlit Intensity"); });
 
+                if(outlineMaskProp != null)
                 CustomInspectorUIUtility.PropertyFoldGroup("Outline Settings", ref this.outlineMaskFold, () =>
                 {
                     materialEditor.TexturePropertySingleLine(new GUIContent("Outline Mask"), outlineMaskProp);
                     materialEditor.ShaderProperty(outlineColorProp, "Outline Color");
                     materialEditor.ShaderProperty(outlineWidth1Prop, "Outline Width");
-//                materialEditor.ShaderProperty(baseColorToOutlineColorProp, "Base Color To Outline Color");
                 });
 
                 CustomInspectorUIUtility.PropertyFoldGroup("Stencil Buffer", ref this.referenceFold, () =>
