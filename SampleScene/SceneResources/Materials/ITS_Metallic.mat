@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: ITS_Metallic
+  m_Shader: {fileID: 4800000, guid: da8c6b5ff8eab5a43b3734cb92065e3b, type: 3}
+  m_ShaderKeywords: _USERIM_ON
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _1stShadeMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _2ndShadeMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmmissiveMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTexure:
+        m_Texture: {fileID: 2800000, guid: 42472976e61cfb443934c640a4034727, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Matcap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MatcapMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: 5a9aa4dd7273f9d429f2e428102e198f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OutlineMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RimLightMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SSSMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _1st2ndShadeSoftness: 0
+    - _BaseColorStep: 0
+    - _BaseShadeSoftness: 0
+    - _BlendAlphaDst: 10
+    - _BlendAlphaSrc: 5
+    - _BlendOpAlpha: 0
+    - _BlendOpRGB: 0
+    - _BlendRGBDst: 10
+    - _BlendRGBSrc: 5
+    - _CompBack: 8
+    - _CompFront: 8
+    - _CullMode: 0
+    - _FailBack: 0
+    - _FailFront: 0
+    - _Metallic: 1
+    - _NormalScale: 1
+    - _OutlineWidth: 0
+    - _PassBack: 0
+    - _PassFront: 0
+    - _PointLightPunchthrough: 0
+    - _ReadMask: 255
+    - _Reference: 0
+    - _RimBias: 0
+    - _RimOffset: 0.03
+    - _RimPower: 1
+    - _SSSColorPower: 4
+    - _SSSMultiplier: 1
+    - _SSSPower: 1
+    - _SSSScale: 1
+    - _ShadeColorStep: 0
+    - _ShadowStrength: 1
+    - _Smoothness: 0.8
+    - _Smoothness1: 1
+    - _SpecularSmoothness: 0.5
+    - _SpecularStep: 0.092
+    - _SubsurfaceDistortion: 0.822
+    - _UnlitIntensity: 1
+    - _UseRim: 1
+    - _UseSubsurface: 0
+    - _WriteMask: 255
+    - _ZFailBack: 0
+    - _ZFailFront: 0
+    - __dirty: 0
+    m_Colors:
+    - _1stShadeColor: {r: 0, g: 0.5352942, b: 0.85294116, a: 0}
+    - _2ndShadeColor: {r: 0.014759964, g: 0.046349518, b: 0.6691177, a: 0}
+    - _BaseColor: {r: 0.4044118, g: 0.4044118, b: 0.4044118, a: 0}
+    - _EmmisiveColor: {r: 1, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 0}
+    - _SSSColor: {r: 0, g: 0, b: 0, a: 0}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 0}
